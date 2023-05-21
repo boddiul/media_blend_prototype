@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leaderboard</title>
+    <link rel="stylesheet" type="text/css" href="../assets/styles.css">
+    <script src="../utils.js" defer></script>
+    <script src="leaderboard.js" defer></script>
+</head>
+
+<header>
+    <a href="/"><div id="menu-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/></svg>
+    </div></a>
+      <div id="logo">
+        <svg height="30" width="140" >
+            <image xlink:href="../assets/logo.svg" height="30" src="logo.svg"/> 
+        </svg>
+      </div>
+    
+    
+    <div id="account-data">
+        <a href="/achievements/">
+            <span id="account-name">User Name 12</span>
+        </a>
+        <a href="/leaderboard/">
+
+            <div id="score-container">
+            <svg height="20" width="20" >
+                <image xlink:href="../assets/score.svg" height="20" src="score.svg"/> 
+            </svg>
+            <span id="score-number">100.0</span>
+            </div>
+        </a>
+      </div>
+</header>
+
+
+<body>
+    <div id="leaderboard-container">
+        <h1 class="lb-title">Leaderboard</h1>
+    
+        <div class="user-info">
+            
+            <div class="user">
+                <svg class="user-avatar" height="50" width="50">
+                    <image xlink:href="../assets/user0.svg" height="50"/> 
+                </svg>
+                <span class="user-name">User Name</span>
+                <span class="user-score">12345</span>
+            </div>
+            <div class="user">
+                <svg class="user-avatar" height="50" width="50">
+                    <image xlink:href="../assets/user0.svg" height="50"/> 
+                </svg>
+                <div class="name-icon-container">
+                    <svg class="name-rank" height="16" width="16">
+                        <image xlink:href="../assets/crown.svg" height="16"/> 
+                    </svg>
+                    <span class="user-name">User Name</span>
+                </div>
+                <span class="user-score">12345</span>
+            </div>
+        </div>
+    
+        <div class="page-selection">
+            <span class="page-circle filled">1</span>
+            <span class="page-circle">2</span>
+            <span class="page-circle">3</span>
+            <span class="page-circle">4</span>
+            <span class="page-circle">5</span>
+        </div>
+    </div>
+    
+
+    
+</body>
+</html>
