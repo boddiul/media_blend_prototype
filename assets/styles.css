@@ -195,15 +195,28 @@ header {
 .comments-input button {
     width: 100%;
     padding: 10px;
-    background-color: #008CBA;
     color: white;
     border: none;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
-.comments-input button:hover {
+.submit-button {
+    background-color: #008CBA;
+}
+
+.submit-button:hover {
     background-color: #007B9A;
 }
+
+.bingo-button {
+    background-color: #00ba03;
+}
+
+.bingo-button:hover {
+    background-color: #0d9a00;
+}
+
 
 .comment {
     display: flex;

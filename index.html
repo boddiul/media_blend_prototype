@@ -13,7 +13,7 @@
     <h1>Project Menu</h1>
     <br>
 
-    <button onclick="initDB()">Reset Database</button>
+    <button onclick="initDB()">Reset Everything</button>
     <br>
     <br>
     <a href="leaderboard/">leaderboard</a>
@@ -26,6 +26,18 @@
     <br>
     <br>
     <a href="bingo/">bingo</a>
+    <br>
+    <br>
 
+    Putin bingo
+    <br>
+    <br>
+
+    <textarea id="phrasesArea" cols="30" rows="10" oninput="updatePhrases()"></textarea>
+    <div id="checkboxArea"></div>
+    <br>
+    <button id="nextButton" onclick="handleNext()">Next</button>
+    <br>
+    
 </body>
 </html>

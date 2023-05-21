@@ -181,13 +181,14 @@ function initDB() {
                     "Artificial Intelligence",
                     "Information technology"],
             game_step : 0, 
-            final_words_ids : []
+            words_selected : null
         }
     }
 
     localStorage.setItem("MBPbingoData", JSON.stringify(bingoData));
 
 
+    initBingo();
     
 }
 
@@ -197,3 +198,140 @@ if (localStorage.getItem("MBPinit")===null)
         initDB();
         localStorage.setItem("MBPinit",true)
     }
+
+
+
+function initBingo() {
+
+
+    let bingoData = JSON.parse(localStorage.getItem("MBPbingoData"))
+
+
+
+    const phrasesArea = document.getElementById('phrasesArea');
+    const checkboxArea = document.getElementById('checkboxArea');
+
+    phrasesArea.value = bingoData["putin_bingo"].start_words.join('\n');
+
+    if (bingoData["putin_bingo"].game_step === 0) {
+        phrasesArea.style.display = 'block';
+        checkboxArea.style.display = 'none';
+    } else if (bingoData["putin_bingo"].game_step === 1) {
+        phrasesArea.style.display = 'none';
+        createCheckboxes(false,bingoData["putin_bingo"].words_selected);
+    } else if (bingoData["putin_bingo"].game_step === 2) {
+        phrasesArea.style.display = 'none';
+        createCheckboxes(true,bingoData["putin_bingo"].words_selected);
+    }
+
+}
+
+function createCheckboxes(disabled,selectedList) {
+
+    
+    
+    let bingoData = JSON.parse(localStorage.getItem("MBPbingoData"));
+
+    const checkboxArea = document.getElementById('checkboxArea');
+    checkboxArea.innerHTML = '';
+
+    bingoData["putin_bingo"].start_words.forEach((phrase, index) => {
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = 'checkbox' + index;
+        checkbox.onclick = function() {
+
+            inversePhrase(index);
+            
+        };
+        checkbox.disabled = disabled;
+
+        checkbox.checked = selectedList[index];
+        
+        const label = document.createElement('label');
+        label.htmlFor = 'checkbox' + index;
+        label.appendChild(document.createTextNode(phrase));
+
+        checkboxArea.appendChild(checkbox);
+        checkboxArea.appendChild(label);
+        checkboxArea.appendChild(document.createElement('br'));
+    });
+
+    checkboxArea.style.display = 'block';
+}
+
+
+function updatePhrases() {
+
+
+    
+
+    const phrasesArea = document.getElementById('phrasesArea');
+    let phrases = phrasesArea.value.split('\n');
+
+
+    let bingoData = JSON.parse(localStorage.getItem("MBPbingoData"));
+    
+    bingoData["putin_bingo"].start_words = phrases;
+
+    localStorage.setItem("MBPbingoData", JSON.stringify(bingoData));
+
+}
+
+function inversePhrase(index) {
+    
+    let bingoData = JSON.parse(localStorage.getItem("MBPbingoData"));
+    
+    bingoData["putin_bingo"].words_selected[index] = !bingoData["putin_bingo"].words_selected[index]
+
+    localStorage.setItem("MBPbingoData", JSON.stringify(bingoData));
+
+}
+
+function handleNext() {
+    const phrasesArea = document.getElementById('phrasesArea');
+    const checkboxArea = document.getElementById('checkboxArea');
+    const nextButton = document.getElementById('nextButton');
+
+    let bingoData = JSON.parse(localStorage.getItem("MBPbingoData"));
+    
+
+    
+
+    if (bingoData["putin_bingo"].game_step === 0) {
+        
+        
+        phrasesArea.style.display = 'none';
+
+        bingoData["putin_bingo"].game_step = 1;
+        bingoData["putin_bingo"].words_selected = new Array(bingoData["putin_bingo"].start_words.length).fill(false);
+
+
+        createCheckboxes(false,bingoData["putin_bingo"].words_selected);
+
+
+
+        } else if (bingoData["putin_bingo"].game_step === 1) {
+            bingoData["putin_bingo"].game_step = 2;
+            
+            
+            createCheckboxes(true,bingoData["putin_bingo"].words_selected);
+
+        }
+        
+    localStorage.setItem("MBPbingoData", JSON.stringify(bingoData));
+
+    }
+
+
+/*
+function resetBingo() {
+        const phrasesArea = document.getElementById('phrasesArea');
+        const checkboxArea = document.getElementById('checkboxArea');
+        phrasesArea.style.display = 'block';
+        checkboxArea.innerHTML = '';
+        state = 0;
+        init();
+}*/
+
+initBingo();
