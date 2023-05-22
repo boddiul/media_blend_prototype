@@ -1,22 +1,27 @@
-function createTable(W, H) {
+function createTable(W, H,fill) {
     // Create the table element
     var table = document.createElement('table');
+
+    let k = 0;
 
     for (var i = 0; i < H; i++) {
         // Create a new row for each iteration
         var row = document.createElement('tr');
         
         for (var j = 0; j < W; j++) {
+
             // Create a new cell for each iteration
             var cell = document.createElement('td');
 
             // Randomize the background color of the cell
-            var color = Math.random() < 0.7 ? "#32CD32" : "#DCDCDC";
+            var color = fill[k] ? "#32CD32" : "#DCDCDC";
 
             cell.style.backgroundColor = color;
 
             // Add the cell to the row
             row.appendChild(cell);
+
+            k+=1;
         }
 
         // Add the row to the table
@@ -100,7 +105,13 @@ function updateArticleDiv(articleId)
 
 function updateCommentsDiv(articleId)
 {
+
     
+    let bingoData = JSON.parse(localStorage.getItem("MBPbingoData"))
+
+
+
+
     let usersData = JSON.parse(localStorage.getItem("MBPusersData"));
 
 
@@ -153,7 +164,20 @@ function updateCommentsDiv(articleId)
 
         if (comment.bingo_data !== undefined)
         {
-            let t = createTable(5, 5);
+            let ff = [];
+
+            for (let i=0;i<25;i++)
+            {
+                if (bingoData[articleId].words_selected == null)
+                    ff.push(false)
+                else
+                    ff.push(bingoData[articleId].words_selected[comment.bingo_data[i]])
+
+            }
+                
+
+
+            let t = createTable(5, 5, ff);
             commentText.appendChild(t);
         }
 
