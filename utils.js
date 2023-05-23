@@ -1,4 +1,4 @@
-const BINGO_SIZE = 5;
+const BINGO_SIZE = 4;
 
 
 function createComment(articleId,userId,text,bingo) {
@@ -14,6 +14,11 @@ function createComment(articleId,userId,text,bingo) {
 
     localStorage.setItem("MBPcommentsData", JSON.stringify(commentsData));
 
+
+    if (bingo)
+        showScoreInc("Created Bingo",50);
+    else
+        showScoreInc("New comment",10);
 
 }
 
@@ -197,16 +202,58 @@ function updateCommentsDiv(articleId)
     });
 }
 
-
+let currentScore = null;
+let visibleScore = null;
 
 function updateUserDiv()
 {
 
-    let userId = localStorage.getItem("MBPcurrentUser");
+    if (currentScore===null)
+    {
+
+        let userId = localStorage.getItem("MBPcurrentUser");
 
     
-    let usersData = JSON.parse(localStorage.getItem("MBPusersData"));
-    document.querySelector('#account-name').innerHTML = usersData[userId].name;
-    document.querySelector('#score-number').innerHTML = usersData[userId].score.toFixed(1);
+        let usersData = JSON.parse(localStorage.getItem("MBPusersData"));
+        document.querySelector('#account-name').innerHTML = usersData[userId].name;
+        document.querySelector('#score-number').innerHTML = usersData[userId].score.toFixed(1);
+    
+        currentScore = usersData[userId].score;
+        visibleScore = currentScore;
+    }
+    else if (visibleScore<currentScore)
+    {
+        visibleScore+=1;
+        document.querySelector('#score-number').innerHTML = visibleScore.toFixed(1);
+
+    }
+
 }
 
+
+
+function showScoreInc(text,score) 
+{
+
+    var popup = document.getElementById("score-popup");
+    var textDiv = document.getElementById("score-text");
+    var valueDiv = document.getElementById("score-value");
+
+    // Setting the text and score
+    textDiv.textContent = text;
+    valueDiv.textContent = '+' + score.toString();
+
+    // Removing the hidden class and adding the show class
+    popup.classList.remove("score-popup-hidden");
+    popup.classList.add("score-popup-show");
+
+    // After a delay, hide the popup again
+    setTimeout(function() {
+        popup.classList.remove("score-popup-show");
+        popup.classList.add("score-popup-hidden");
+    }, 3000);  // Change this value to adjust the delay
+
+
+
+    currentScore += score;
+}

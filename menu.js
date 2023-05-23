@@ -127,7 +127,7 @@ function initDB() {
     {
         if (commentsData["putin_bingo"][i].bingo_data !== undefined)
         {
-            let M = 50;
+            let M = 50 - 21;
             let N = BINGO_SIZE*BINGO_SIZE;
 
             let array = Array.from({length: M}, (_, i) => i);
@@ -174,7 +174,7 @@ function initDB() {
                     "Healthcare",
                     "BRICS nations",
                     "Cybersecurity",
-                    "Digital economy",
+                    /*"Digital economy",
                     "Traditional values",
                     "Foreign policy",
                     "Infrastructure",
@@ -194,7 +194,7 @@ function initDB() {
                     "Eurasian Economic Union",
                     "Pension reform",
                     "Social inequality",
-                    "Disinformation",
+                    "Disinformation",*/
                     "Multilateralism",
                     "European Union",
                     "Opposition parties",
@@ -208,7 +208,9 @@ function initDB() {
     localStorage.setItem("MBPbingoData", JSON.stringify(bingoData));
 
 
-    initBingo2();
+    initBingoDiv();
+    
+
     
 }
 

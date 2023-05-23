@@ -178,6 +178,55 @@ function showOverlay(articleId,table_id) {
     updateBingoColors(articleId)
 }
 
+let bingosS = 0;
+
+function calculateBingos(matrix) {
+    const n = matrix.length;
+    let bingoCount = 0;
+
+    // Checking rows
+    for(let i = 0; i < n; i++) {
+        if(matrix[i].every(val => val === true)) {
+            bingoCount++;
+        }
+    }
+
+    // Checking columns
+    for(let i = 0; i < n; i++) {
+        let columnBingo = true;
+        for(let j = 0; j < n; j++) {
+            if(matrix[j][i] !== true) {
+                columnBingo = false;
+                break;
+            }
+        }
+        if(columnBingo) {
+            bingoCount++;
+        }
+    }
+
+    // Checking diagonals
+    let diag1Bingo = true;
+    let diag2Bingo = true;
+    for(let i = 0; i < n; i++) {
+        if(matrix[i][i] !== true) {
+            diag1Bingo = false;
+        }
+        if(matrix[i][n-i-1] !== true) {
+            diag2Bingo = false;
+        }
+    }
+    if(diag1Bingo) {
+        bingoCount++;
+    }
+    if(diag2Bingo) {
+        bingoCount++;
+    }
+
+    return bingoCount;
+}
+
+
 function updateBingoColors(articleId)
 {
 
@@ -190,13 +239,22 @@ function updateBingoColors(articleId)
 
     let commentId = 0;
 
+
     comments.forEach(function(comment) {
         if (comment.bingo_data !== undefined)
         {
-            
+            let ar = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+
+            let xx = 0;
+            let yy = 0;
 
             for (let i=0;i<BINGO_SIZE*BINGO_SIZE;i++)
             {
+                if (xx>=BINGO_SIZE)
+                    {
+                        xx = 0;
+                        yy += 1;
+                    }
                 let col = null;
 
                 if (bingoData[articleId].words_selected == null)
@@ -204,6 +262,10 @@ function updateBingoColors(articleId)
                 else
                     col = (bingoData[articleId].words_selected[comment.bingo_data[i]]) ? "#32CD32" : "#DCDCDC";
 
+                if (bingoData[articleId].words_selected != null)
+                    ar[yy][xx] = (bingoData[articleId].words_selected[comment.bingo_data[i]])
+                    
+                    
                 let cell= document.getElementById(`bingo_small_${commentId}_${i}`)
 
                 cell.style.backgroundColor = col;
@@ -213,6 +275,23 @@ function updateBingoColors(articleId)
                 if (cell)
                     cell.style.backgroundColor = col;
 
+                    xx +=1;
+            }
+
+            if (comment.user_id==0 && bingoData[articleId].words_selected != null)
+            {
+
+
+                console.log(ar)
+                let ssum = calculateBingos(ar)
+
+                console.log(ssum)
+
+                if (ssum != bingosS)
+                {
+                    bingosS = ssum
+                    showScoreInc("BINGO!",100)
+                }
             }
         }
         commentId += 1;
@@ -222,7 +301,7 @@ function updateBingoColors(articleId)
 
 function initBingoPage(articleId)
 {
-    updateUserDiv()
+    
 
 
     updateArticleDiv(articleId);
@@ -276,6 +355,8 @@ function initBingoPage(articleId)
     
         }
     
+        updateUserDiv()
+
         requestAnimationFrame(draw);
     }
     

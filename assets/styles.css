@@ -331,3 +331,28 @@ a {
 .new-bingo-submit {
     margin-left: 20px;
 }
+
+/* score popup */
+
+
+#score-popup {
+    position: fixed;
+    
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    transition: top 0.5s, opacity 0.5s;
+    z-index: 1000;
+}
+
+.score-popup-hidden {
+    top: 0px;
+    opacity: 0;
+}
+
+.score-popup-show {
+    top: 50px;
+    opacity: 1;
+}
