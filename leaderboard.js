@@ -71,6 +71,10 @@ function updateUsersListDiv() {
 }
 
 
-updateUserDiv();
+function initLeaderboardPage() {
 
-updateUsersListDiv();
+
+    updateUserDiv();
+
+    updateUsersListDiv();
+}

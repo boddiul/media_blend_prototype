@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Menu</title>
-    <script src="utils.js" defer></script>
-    <script src="menu.js" defer></script>
+    <script src="utils.js"></script>
+    <script src="bingo.js"></script>
+    <script src="leaderboard.js"></script>
+    <script src="menu.js"></script>
 </head>
-<body>
+<body onload="initMenuPage()">
 
     
     <h1>Project Menu</h1>
@@ -19,10 +21,7 @@
     <a href="leaderboard/">leaderboard</a>
     <br>
     <br>
-    <a href="achievements/">achievements</a>
-    <br>
-    <br>
-    <a href="tomatoes/">tomatoes</a>
+    <a href="prediction/">oscars</a>
     <br>
     <br>
     <a href="bingo/">bingo</a>
@@ -33,10 +32,10 @@
     <br>
     <br>
 
-    <textarea id="phrasesArea" cols="30" rows="10" oninput="updatePhrases()"></textarea>
+    <textarea id="phrasesArea" cols="30" rows="10"></textarea>
     <div id="checkboxArea"></div>
     <br>
-    <button id="nextButton" onclick="handleNext()">Next</button>
+    <button id="nextButton">Next</button>
     <br>
     
 </body>

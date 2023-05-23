@@ -6,10 +6,13 @@
     <title>leaderboard</title>
     <link rel="stylesheet" type="text/css" href="../assets/styles.css">
     <script src="../utils.js" defer></script>
-    <script src="leaderboard.js" defer></script>
+    <script src="../bingo.js" defer></script>
+    <script src="../prediction.js"></script>
+    <script src="../leaderboard.js" defer></script>
+    <script src="../menu.js" defer></script>
 </head>
 
-<header>
+<header class="header-news">
     <a href="../"><div id="menu-button">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/></svg>
     </div></a>
@@ -37,7 +40,7 @@
 </header>
 
 
-<body>
+<body onload="initLeaderboardPage()">
     <div id="leaderboard-container">
         <h1 class="lb-title">Leaderboard</h1>
     

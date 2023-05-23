@@ -16,8 +16,15 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #e6e6e6;
     height: 40px;
+  }
+
+  .header-news {
+    background-color: #e6e6e6;
+  }
+
+  .header-movies {
+    background-color: #fbffb1;
   }
   
   #menu-button, #logo, #account-data {

@@ -208,20 +208,14 @@ function initDB() {
     localStorage.setItem("MBPbingoData", JSON.stringify(bingoData));
 
 
-    initBingo();
+    initBingo2();
     
 }
 
 
-if (localStorage.getItem("MBPinit")===null)
-    {
-        initDB();
-        localStorage.setItem("MBPinit",true)
-    }
 
 
-
-function initBingo() {
+function initBingoDiv() {
 
 
     let bingoData = JSON.parse(localStorage.getItem("MBPbingoData"))
@@ -282,6 +276,8 @@ function createCheckboxes(disabled,selectedList) {
 
 
 function updatePhrases() {
+
+    console.log("UPDATED")
 
 
     
@@ -344,14 +340,17 @@ function handleNext() {
     }
 
 
-/*
-function resetBingo() {
-        const phrasesArea = document.getElementById('phrasesArea');
-        const checkboxArea = document.getElementById('checkboxArea');
-        phrasesArea.style.display = 'block';
-        checkboxArea.innerHTML = '';
-        state = 0;
-        init();
-}*/
+function initMenuPage() 
+{
 
-initBingo();
+    document.getElementById("phrasesArea").addEventListener("input",updatePhrases)
+    document.getElementById("nextButton").addEventListener("click",handleNext)
+    
+    if (localStorage.getItem("MBPinit")===null)
+    {
+        initDB();
+        localStorage.setItem("MBPinit",true)
+    }
+
+    initBingoDiv();
+}
