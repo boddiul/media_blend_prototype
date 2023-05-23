@@ -128,7 +128,7 @@ function initDB() {
         if (commentsData["putin_bingo"][i].bingo_data !== undefined)
         {
             let M = 50;
-            let N = 25;
+            let N = BINGO_SIZE*BINGO_SIZE;
 
             let array = Array.from({length: M}, (_, i) => i);
 

@@ -9,7 +9,18 @@ console.log(JSON.parse(localStorage.getItem("MBPbingoData")))
 console.log(JSON.parse(localStorage.getItem("MBPcommentsData")))
 
 
+document.getElementById('submitButton').addEventListener('click', clickSubmitComment);
 
+document.getElementById('bingoButton').addEventListener('click', showNewBingoOverlay);
+
+
+document.getElementById('bingo-table-overlay').addEventListener('click', () => {
+    // Fade out
+    const overlay = document.getElementById('bingo-table-overlay');
+    overlay.style.opacity = '0';
+    
+    setTimeout(() => overlay.style.display = 'none', 500);
+});
 
 
 let lastTimestamp = 0;
@@ -24,7 +35,10 @@ function draw() {
         // Drawing code here...
         console.log('Drawing...'); // replace this with your actual drawing code
 
-        updateCommentsDiv("putin_bingo");
+        //updateCommentsDiv("putin_bingo");
+
+
+        updateBingoColors("putin_bingo");
 
     }
 

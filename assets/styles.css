@@ -249,7 +249,78 @@ a {
 }
 
 
+/* bingo words */
+
+
+#bingo-table-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s;
+}
+
+#bingo-table-big {
+    /* Modify the size of the table and cells as needed */
+    width: 250px;
+    height: 250px;
+}
+
+#bingo-table-big td {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 7px;
+}
+
 .bingo-table-small {
     margin: auto;
 }
 
+
+/* new bingo table */
+.new-bingo-overlay {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto; /* Makes overlay scrollable */
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.new-bingo-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    width: 80%;
+}
+
+.new-bingo-phrases {
+    list-style-type: none;
+    max-height: 70vh; /* Limit height of phrases list */
+    overflow-y: auto; /* Makes phrases list scrollable */
+}
+
+.new-bingo-counter, .new-bingo-submit {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.new-bingo-submit {
+    margin-left: 20px;
+}
