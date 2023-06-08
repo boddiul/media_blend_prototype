@@ -94,7 +94,7 @@ function showNewBingoOverlay(articleId) {
         console.log(selectedIndexes);
 
         createComment(articleId,0,document.getElementById("userComment").value,selectedIndexes)
-
+        document.getElementById("userComment").value = "";
         updateCommentsDiv(articleId);
 
         overlay.style.display = 'none';
@@ -339,6 +339,10 @@ function initBingoPage(articleId)
     let lastTimestamp = 0;
     
     function draw() {
+
+        
+        updateUserDiv()
+
         const currentTimestamp = Date.now();
     
         // Check if one second has passed since the last draw call
@@ -355,7 +359,6 @@ function initBingoPage(articleId)
     
         }
     
-        updateUserDiv()
 
         requestAnimationFrame(draw);
     }

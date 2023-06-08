@@ -39,6 +39,8 @@ function clickSubmitComment(articleId)
         createComment(articleId,userId,txt,undefined)
 
         updateCommentsDiv(articleId);
+
+        document.getElementById("userComment").value = ""
     }
 
 }
@@ -208,8 +210,10 @@ let visibleScore = null;
 function updateUserDiv()
 {
 
+    console.log("UPD USER DIV CALLED",currentScore)
     if (currentScore===null)
     {
+        console.log("FIRST CALL")
 
         let userId = localStorage.getItem("MBPcurrentUser");
 
@@ -256,4 +260,11 @@ function showScoreInc(text,score)
 
 
     currentScore += score;
+
+    
+    let usersData = JSON.parse(localStorage.getItem("MBPusersData"));
+
+    usersData[0].score+=score
+
+    localStorage.setItem("MBPusersData", JSON.stringify(usersData));
 }

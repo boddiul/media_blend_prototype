@@ -50,6 +50,8 @@ function initDB() {
 
     console.log(usersData)
 
+    usersData[0].score = Math.floor(usersData[0].score/2);
+
 
     localStorage.setItem("MBPusersData", JSON.stringify(usersData));
     localStorage.setItem("MBPcurrentUser","0")
